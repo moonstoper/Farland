@@ -42,7 +42,7 @@ public class npcControl : MonoBehaviour
                 {
 
                     FindObjectOfType<DialogueManager>().DisplayNextSentence();
-
+                                   
                 }
 
             }

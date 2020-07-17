@@ -65,14 +65,15 @@ public class PlayerMovemnt : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkradius, whatisground);
         //
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
-        {   anim.SetTrigger("takeoff");
+        {   Debug.Log("tapped");
+            anim.SetTrigger("takeoff");
             rb.velocity = Vector2.up * 5;
             isJumping = true;
             _jumpcounter = jumpTime;
         }
 
         if(isGrounded == true)
-        {
+        {   Debug.Log("tappedG");
             anim.SetBool("isjumping", false);
         }
         else

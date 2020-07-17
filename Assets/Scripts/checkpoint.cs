@@ -8,7 +8,7 @@ public class checkpoint : MonoBehaviour
 
     void Start()
     {
-        gameEngine = GameObject.FindGameObjectWithTag("GameEngine").GetComponent<GameEngine>();
+        gameEngine = FindObjectOfType<GameEngine>();
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,4 +18,6 @@ public class checkpoint : MonoBehaviour
             FindObjectOfType<PlayerPref>().Save();
         }
     }
+
+  
 }
