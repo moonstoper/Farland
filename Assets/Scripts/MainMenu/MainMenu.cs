@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -17,10 +15,22 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    public void OnPlayClick()
-    {
-        int level = PlayerPrefs.GetInt("level", 0);
+    public void OnClickContinue()
+    {   
+
+        int level = PlayerPrefs.GetInt("level", 1);
+        PlayerPrefs.SetInt("isNextLevel", 0);
+        PlayerPrefs.SetInt("isNewGame", 0);
         SceneManager.LoadScene(level);
+        
+
+    }
+
+    public void OnClickNew()
+    {   
+        PlayerPrefs.SetInt("isNextLevel", 0);
+        PlayerPrefs.SetInt("isNewGame", 1);
+        SceneManager.LoadScene(1);
 
     }
 }

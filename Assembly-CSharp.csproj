@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\SaveManager.cs" />
      <Compile Include="Assets\Scripts\checkpoint.cs" />
      <Compile Include="Assets\Scripts\npcControl.cs" />
+     <Compile Include="Assets\Scripts\toNextLevel.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />

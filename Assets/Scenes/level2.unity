@@ -1051,6 +1051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b342139fb5ecb4183f4a5b5ba6a8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newGame: 0
   lastcheckpoint: {x: -4.15, y: 3.54}
 --- !u!4 &916921269
 Transform:

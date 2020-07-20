@@ -5,18 +5,15 @@ using UnityEngine.SceneManagement;
 public class PlayerPref : MonoBehaviour
 {
     // Start is called before the first frame update
-    
+
     private GameEngine gameEngine;
-   
+
     public int level;
     public Vector2 lastposition;
-    public float xaxis,yaxis;
+    public float xaxis, yaxis;
     public int health;
+
     
-    public void Start()
-    {
-        gameEngine = FindObjectOfType<GameEngine>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -25,16 +22,16 @@ public class PlayerPref : MonoBehaviour
         {
             ReloadTolastCheckpoint();
         }
-     
-      
-        
+
+
+
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
 
-      
+
     }
 
     public void ReloadTolastCheckpoint()
@@ -45,13 +42,15 @@ public class PlayerPref : MonoBehaviour
 
     public void Save()
     {
-            xaxis = gameEngine.lastcheckpoint.x;
-            yaxis = gameEngine.lastcheckpoint.y;
-            PlayerPrefs.SetFloat("xaxis", xaxis);
-            PlayerPrefs.SetFloat("yaxis", yaxis);
-            PlayerPrefs.SetInt("level", (int)SceneManager.GetActiveScene().buildIndex);
-            PlayerPrefs.Save();
-            Debug.Log("Saved");
+        Vector2 chkpoint = FindObjectOfType<GameEngine>().lastcheckpoint;
+        xaxis = chkpoint.x;
+        yaxis = chkpoint.y;
+        PlayerPrefs.SetFloat("xaxis", xaxis);
+        PlayerPrefs.SetFloat("yaxis", yaxis);
+        PlayerPrefs.SetInt("level", (int)SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("isNewGame", 0);
+        PlayerPrefs.Save();
+        Debug.Log("Saved");
     }
 
 }
