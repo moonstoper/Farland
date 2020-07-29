@@ -3,7 +3,7 @@
 public class npcControl : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool pressed_key;
+    bool in_region;
     public Dialogue dialogue;
     public bool flag = false;
 
@@ -13,7 +13,7 @@ public class npcControl : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
 
-            pressed_key = true;
+            in_region= true;
             flag = false;
         }
     }
@@ -22,19 +22,19 @@ public class npcControl : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        pressed_key = false;
+        in_region = false;
+        flag = false;
     }
-    void FixedUpdate()
+    void Update()
     {
-        if (pressed_key)
+        if (in_region)
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.KeypadEnter))
             {
-                Debug.Log("flag = " + flag);
-                if (!flag)
+                if (flag == false)
                 {
 
-                    flag = !flag;
+                    flag = true;
                     FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
                     FindObjectOfType<PlayerMovemnt>().enabled = false;
                 }

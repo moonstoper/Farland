@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
+    public LeanTween btn;
     void Start()
     {
         
@@ -32,5 +33,13 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("isNewGame", 1);
         SceneManager.LoadScene(1);
 
+    }
+
+    public void OnCLickDelete()
+    {
+        GameObject btncontinue = GameObject.FindGameObjectWithTag("Continue");
+        PlayerPrefs.SetInt("level", 0);
+        LeanTween.alpha(btncontinue, 1f, 2f).setEase(LeanTweenType.easeInQuad);
+        btncontinue.SetActive(false);
     }
 }
