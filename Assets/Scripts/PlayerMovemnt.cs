@@ -9,7 +9,7 @@ public class PlayerMovemnt : MonoBehaviour
     float input, _y;
     Rigidbody2D rb;
     Animator anim;
-    float _speed = 6f;
+    public float speed, jumpforce;
     bool faceright = true;
 
     bool isGrounded;
@@ -43,7 +43,7 @@ public class PlayerMovemnt : MonoBehaviour
     void Update()
     {
         input = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(input * _speed, rb.velocity.y);
+        rb.velocity = new Vector2(input * speed, rb.velocity.y);
         if (input == 0)
         {
 
@@ -65,30 +65,32 @@ public class PlayerMovemnt : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkradius, whatisground);
         //
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("tapped");
+           
             anim.SetTrigger("takeoff");
-            rb.velocity = Vector2.up * 5;
+            rb.velocity = Vector2.up * jumpforce;
             isJumping = true;
             _jumpcounter = jumpTime;
         }
 
         if (isGrounded == true)
         {
-            Debug.Log("tappedG");
+            
             anim.SetBool("isjumping", false);
+            
         }
         else
-        {
+        {   
             anim.SetBool("isjumping", true);
+            
         }
 
         if (Input.GetKey(KeyCode.Space) && isJumping == true)
         {
             if (_jumpcounter > 0)
             {
-                rb.velocity = Vector2.up * 5;
+                rb.velocity = Vector2.up * jumpforce;
                 _jumpcounter -= Time.deltaTime;
             }
             else
@@ -102,29 +104,35 @@ public class PlayerMovemnt : MonoBehaviour
         }
 
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkradius, whatisground);
-        //Debug.LogError(isTouchingFront);
+        if(isTouchingFront)
+        Debug.Log("touched front");
         if (isTouchingFront == true && isGrounded == false && input != 0)
-        {
+        {   anim.SetTrigger("onwall");
+            anim.SetBool("wallhug",true);
             wallsliding = true;
         }
         else
         {
             wallsliding = false;
+            anim.SetBool("wallhug",false);
         }
 
         if (wallsliding)
-        {
+        {   
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallslidingspeed, float.MaxValue));
+
             Flip();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && wallsliding == true)
+        if (Input.GetKey(KeyCode.Space) && wallsliding == true)
         {
             walljumping = true;
+
             Invoke("SetWallJumptoFalse", walljumpTime);
         }
         if (walljumping)
         {
+            
             rb.velocity = new Vector2(xwallforce * -input, ywallforce); //for zigzag jumping add ;
         }
     }
