@@ -51,7 +51,7 @@ public class npcControl : MonoBehaviour
 
                     flag = true;
                     FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
-                    FindObjectOfType<PlayerMovemnt>().enabled = false;
+                    FindObjectOfType<PlayerMovement>().enabled = false;
                 }
                 else
                 {

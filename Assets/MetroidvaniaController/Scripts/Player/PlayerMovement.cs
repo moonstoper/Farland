@@ -14,7 +14,9 @@ public class PlayerMovement : MonoBehaviour {
 	bool dash = false;
 
 	//bool dashAxis = false;
-	
+	private void Awake() {
+		transform.position = FindObjectOfType<GameEngine>().lastcheckpoint;
+	}
 	// Update is called once per frame
 	void Update () {
 

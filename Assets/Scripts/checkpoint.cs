@@ -12,7 +12,7 @@ public class checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameEngine.lastcheckpoint = FindObjectOfType<PlayerMovemnt>().transform.position;
+            gameEngine.lastcheckpoint = FindObjectOfType<PlayerMovement>().transform.position;
             FindObjectOfType<PlayerPref>().Save();
         }
     }

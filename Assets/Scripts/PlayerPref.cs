@@ -47,6 +47,7 @@ public class PlayerPref : MonoBehaviour
         yaxis = chkpoint.y;
         PlayerPrefs.SetFloat("xaxis", xaxis);
         PlayerPrefs.SetFloat("yaxis", yaxis);
+        level = (int)SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("level", (int)SceneManager.GetActiveScene().buildIndex);
         PlayerPrefs.SetInt("isNewGame", 0);
         PlayerPrefs.Save();
